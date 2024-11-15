@@ -1,0 +1,38 @@
+@startuml skincare_flowchart
+start
+
+:Admin Login;
+if (Login Berhasil?) then
+    :Akses Dashboard;
+    :Pilih Fitur;
+    if (Fitur CRUD Produk) then
+        :CRUD Produk;
+        :Pilih Operasi CRUD;
+        if (Create produk) then
+            :Input Nama, Harga, Stok, Deskripsi;
+            :Simpan ke Database;
+        elseif (Update produk) then
+            :Pilih Produk;
+            :Edit Informasi Produk;
+            :Simpan Perubahan ke Database;
+        elseif (Delete produk) then
+            :Pilih Produk untuk Dihapus;
+            :Konfirmasi Penghapusan;
+            :Hapus dari Database;
+        elseif (Read produk) then
+            :Tampilkan Daftar Produk;
+        endif
+    elseif (Fitur Generate Laporan) then
+        :Generate Laporan;
+        :Tampilkan dan Ekspor Laporan;
+
+    endif
+    :Logout;
+    stop
+else
+    :Tampilkan Error Login;
+    :Kembali ke Halaman Utama;
+    stop
+endif
+
+@enduml

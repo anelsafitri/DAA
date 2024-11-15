@@ -1,0 +1,51 @@
+@startuml
+
+actor Admin as "Admin"
+
+rectangle "Sistem Manajemen Data Barang Skincare" {
+    usecase "Login Admin" as UC1
+    usecase "Verifikasi Login" as UC2
+    usecase "Akses Dashboard" as UC3
+    usecase "Pilih Fitur" as UC4
+    usecase "Pilih Fitur CRUD Produk" as UC5
+    usecase "Pilih Fitur Generate Laporan" as UC6
+    usecase "CRUD Produk" as UC7
+    usecase "Tambah Produk" as UC8
+    usecase "Lihat Produk" as UC9
+    usecase "Ubah Produk" as UC10
+    usecase "Hapus Produk" as UC11
+    usecase "Generate Laporan Produk" as UC12
+    usecase "Tampilkan Laporan" as UC13
+    usecase "Ekspor Laporan" as UC14
+    usecase "Tampilkan Error Login" as UC16
+    usecase "Logout" as UC17
+    usecase "Kembali ke Halaman Utama" as UC18
+}
+
+Admin --> UC1: Login ke sistem
+UC1 --> UC2: Verifikasi Login
+UC2 --> UC3: Akses Dashboard
+UC2 --> UC16: Tampilkan Error Login
+UC16 --> UC18: Kembali ke Halaman Utama
+
+UC3 --> UC4: Pilih Fitur
+UC4 --> UC5: Pilih Fitur CRUD Produk
+UC4 --> UC6: Pilih Fitur Generate Laporan
+
+UC5 --> UC7: CRUD Produk
+UC7 --> UC8: Tambah Produk
+UC8 --> UC17: Logout
+UC7 --> UC9: Lihat Produk
+UC9 --> UC17: Logout
+UC7 --> UC10: Ubah Produk
+UC10 --> UC17: Logout
+UC7 --> UC11: Hapus Produk
+UC11 --> UC17: Logout
+
+UC6 --> UC12: Generate Laporan Produk
+UC12 --> UC13: Tampilkan Laporan
+UC13 --> UC17: Logout
+UC12 --> UC14: Ekspor Laporan
+UC14 --> UC17: Logout
+
+@enduml
