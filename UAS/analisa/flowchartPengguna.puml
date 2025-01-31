@@ -1,0 +1,88 @@
+@startuml
+
+start
+
+:Pengguna Memilih "Daftar" atau "Login";
+
+if (Pilih Daftar?) then (Ya)
+    
+    if (Data Valid?) then (Ya)
+        :Buat Akun;
+        :Kirim Email Verifikasi;
+        :Pengguna Verifikasi Email;
+        :Pendaftaran Sukses;
+        :Kembali ke Halaman Login;
+    else (Tidak)
+        :Tampilkan Pesan Kesalahan;
+        :Minta Pengguna Mengisi Ulang Data;
+        stop
+    endif
+endif
+
+if (Pilih Login?) then (Ya)
+    :Masukkan Email & Password;
+
+    if (Akses Berhasil?) then (Ya)
+        :Masuk ke E-BOOK;
+    else (Tidak)
+        :Gagal Login, Coba Lagi;
+        stop
+    endif
+endif
+
+:Tampilkan Dashboard;
+:Tampilkan Rekomendasi Buku;
+:Notifikasi Aktivitas Komunitas;
+
+while (Pengguna Ingin Melakukan Aksi?) is (Ya)
+    :Pilih Aksi;
+
+    switch (Pilihan Aksi)
+        case (Mencari E-book)
+            :Masukkan Kata Kunci;
+            :Tampilkan Hasil Pencarian;
+            if (E-book Ditemukan?) then (Ya)
+                :Buka Halaman E-book;
+                :Membaca E-book;
+                if (Ingin Memberi Ulasan?) then (Ya)
+                    :Isi Form Ulasan & Rating;
+                    :Simpan Ulasan;
+                endif
+            else (Tidak)
+                :Tampilkan Rekomendasi Serupa;
+            endif
+        case (Bergabung dalam Diskusi)
+            :Masuk ke Forum Diskusi;
+            :Pilih Topik Diskusi;
+            if (Ingin Berkontribusi?) then (Ya)
+                :Tulis Komentar;
+                :Balas Komentar Lain;
+            endif
+        case (Mengunggah E-book)
+            :Unggah File E-book;
+            :Isi Detail Buku;
+            :Kirim untuk Verifikasi;
+            if (Disetujui oleh Admin?) then (Ya)
+                :E-book Ditampilkan;
+            else (Tidak)
+                :E-book Ditolak, Tampilkan Alasan;
+            endif
+        case (Melihat Profil & Aktivitas)
+            :Tampilkan Profil Pengguna;
+            :Tampilkan Riwayat Bacaan;
+            :Tampilkan Statistik Aktivitas;
+        case (Mengikuti Pengguna Lain)
+            :Cari Pengguna;
+            :Klik "Ikuti";
+            :Mendapatkan Notifikasi Aktivitas Pengguna yang Diikuti;
+        case (Logout via Pengaturan)
+            :Buka Menu Pengaturan;
+            :Pilih Logout;
+            :Keluar dari Akun;
+            stop
+    endswitch
+endwhile
+
+
+
+@enduml
